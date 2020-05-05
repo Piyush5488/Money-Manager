@@ -1,12 +1,16 @@
 /* Navbar */
 
-img{
+.nav-img{
   border-radius: 50%;
 }
 
 .navbar-header{
   margin-left:5px;
   width:100%;
+}
+.btn0{
+  padding-left: 15px;
+  padding-right: 15px;
 }
 @media (max-width: 576px) {
   .nav-item{
@@ -18,3 +22,26 @@ img{
     margin-right: 10px;
   }
  }
+
+/* home */
+#home{
+  background-color: #ffacb7;
+  text-align: center;
+}
+
+
+
+  #home{
+    height: 15%;
+    padding: 10%;
+  }
+  .content{
+    margin: 10%;
+  }
+  .content1{
+    margin-top: 5%;
+  }
+
+  .btn1{
+    margin-right: 10px;
+  }
