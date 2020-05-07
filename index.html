@@ -5,6 +5,8 @@
     <title>Money Manager</title>
     <!-- Make responsive for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- Bootstrap -->
@@ -46,7 +48,7 @@
       <div class="container">
         <div class="row home-row">
           <div class="col-lg-6">
-            <img src="images/image.jpg" alt="" class="home-img img-fluid">
+            <img src="images/image.jpg" alt="" class="home-img img-fluid feature-image">
 
           </div>
           <div class="col-lg-6 home-col">
@@ -73,18 +75,18 @@
         <div class="row">
           <div class="col-lg-6 feature1">
             <div class="image">
-                <img src="images/Pay.png" alt="">
+                <img class="feature-image" src="images/Pay.png" alt="">
             </div>
             <div class="f-content">
-              <h1 class="f-head">Pay and settle up money accountings among your friends</h1>
+              <h3 class="f-head">Pay and settle up money accountings among your friends</h3>
             </div>
           </div>
           <div class="col-lg-6 feature2">
             <div class="image">
-                <img src="images/Trips.png" alt="">
+                <img class="feature-image" src="images/Trips.png" alt="">
             </div>
             <div class="f-content">
-              <h1 class="f-head">Enjoy your trips without the stress of accountings</h1>
+              <h3 class="f-head">Enjoy your trips without the stress of accountings</h3>
             </div>
 
           </div>
@@ -102,11 +104,16 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="buttons">
-              <button type="button" class="btn btn-lg btn-outline-primary btn1">Sign in</button>
-              <button type="button" class="btn btn-lg btn-outline-primary">Sign up</button>
+              <button type="button" class="btn btn-outline-primary btn1">Sign in</button>
+              <button type="button" class="btn btn-outline-primary">Sign up</button>
+              <script type="text/javascript">
+              if ($(window).width() > 414) {
+                  $("#footer").find("button").attr("class", "btn btn-lg btn-outline-primary btn1");
+                  }
+              </script>
             </div>
             <div class="copyright">
-              <p>©copyright SL:Piyush</p>
+              <p>©copyright Money-Manager</p>
             </div>
           </div>
 

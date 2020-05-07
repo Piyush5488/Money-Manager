@@ -1,5 +1,7 @@
 /* Navbar */
-
+#navbar{
+  font-family: 'Roboto', sans-serif;
+}
 .nav-img{
   border-radius: 50%;
 }
@@ -7,6 +9,9 @@
 .navbar-header{
   margin-left:5px;
   width:100%;
+}
+.btn-outline-primary{
+  color: #212529;
 }
 .btn0{
   padding-left: 15px;
@@ -27,6 +32,7 @@
 #home{
   background-color: #ffacb7;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
   #home{
@@ -92,6 +98,10 @@
   }
   .f-head{
     font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+  }
+  .copyright{
+    margin-top: 1%;
   }
   @media (max-width: 576px) {
     .feature2{
@@ -102,13 +112,21 @@
     }
     .f-head{
       font-size: 1.5rem;
+      font-family: 'Roboto', sans-serif;
     }
+    .copyright{
+      margin-top: 5%;
+    }
+
   }
 
   .image img {
     margin-top: 17%;
     width: 60%;
     height: auto;
+}
+.feature-image{
+  border-radius: 20%;
 }
 
 .f-content{
@@ -125,7 +143,5 @@
   background-color: #00ffff;
   padding-top: 4%;
   padding-bottom: 2%;
-}
-.copyright{
-  margin-top: 1%;
+  font-family: 'Roboto', sans-serif;
 }
