@@ -50,12 +50,18 @@ app.get("/Sign-up", function(req, res){
   res.render("register",{register:str})
 })
 app.get("/dashboard",function(req,res){
+  username = req.user.username;
+  console.log(username);
   if(req.isAuthenticated()){
-    res.render("dashboard");
+    res.render("dashboard",{username:username});
   }
   else{
     res.redirect("/Sign-in");
   }
+})
+app.get("/Log-out",function(req, res){
+  req.logout();
+  res.redirect("/");
 })
 
 app.post("/Sign-in",function(req,res){
@@ -71,7 +77,7 @@ app.post("/Sign-in",function(req,res){
     }
     else{
       passport.authenticate("local")(req,res, function(){
-        res.redirect("dashboard");
+        res.redirect("/dashboard");
       })
     }
   })
