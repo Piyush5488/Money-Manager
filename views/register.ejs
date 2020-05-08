@@ -25,14 +25,14 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center"><%= register %> </h5>
-            <form class="form-signin">
+            <form action="/<%= register %>" class="form-signin" method="POST">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                 <label for="inputEmail">Username</label>
               </div>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <label for="inputPassword">Password</label>
               </div>
 
