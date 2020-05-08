@@ -51,7 +51,6 @@ app.get("/Sign-up", function(req, res){
 })
 app.get("/dashboard",function(req,res){
   username = req.user.username;
-  console.log(username);
   if(req.isAuthenticated()){
     res.render("dashboard",{username:username});
   }
@@ -77,6 +76,7 @@ app.post("/Sign-in",function(req,res){
     }
     else{
       passport.authenticate("local")(req,res, function(){
+        console.log("Hello");
         res.redirect("/dashboard");
       })
     }

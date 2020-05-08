@@ -1,6 +1,6 @@
 /* Navbar */
 #navbar{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'helvetica neue';
 }
 .nav-img{
   border-radius: 50%;
@@ -32,7 +32,7 @@
 #home{
   background: linear-gradient(to right, #0062E6, #33AEFF);
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'helvetica neue';
 }
 
   #home{
@@ -45,8 +45,11 @@
   }
   .content1{
     margin-top: 5%;
+    font-size: 2rem;
   }
-
+  .home-h1{
+    font-size: 3rem;
+  }
   .btn1{
     margin-right: 10px;
   }
@@ -99,7 +102,7 @@
   }
   .f-head{
     font-size: 2rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'helvetica neue';
   }
   .copyright{
     margin-top: 1%;
@@ -113,7 +116,7 @@
     }
     .f-head{
       font-size: 1.5rem;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'helvetica neue';
     }
     .copyright{
       margin-top: 5%;
@@ -145,5 +148,5 @@
   background: linear-gradient(to right, #035aa6, #0062E6);;
   padding-top: 4%;
   padding-bottom: 2%;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'helvetica neue';
 }

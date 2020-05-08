@@ -32,3 +32,78 @@ body {
     margin-right: 10px;
   }
  }
+
+ /* accountings */
+
+.container{
+  background-color: #A683E3;
+}
+ .box {
+  max-width: 675px;
+  height: 60px;
+  padding: 4px;
+  margin: 60px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+.acc-padding{
+  padding-left: 15%;
+  padding-right: 15%;
+}
+.acc-box{
+  margin-left: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#heading {
+  background-color: white;
+  text-align: center;
+  font-family: 'helvetica neue';
+  color: #0062E6;
+}
+
+.item {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #F1F1F1;
+  background-color: white;
+}
+
+form.item {
+  text-align: center;
+  margin-left: 20px;
+}
+
+.acc-btn {
+  min-height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color: #0062E6;
+  color: #fff;
+  font-size: 20px;
+  padding-bottom: 6px;
+  border-width: 0;
+}
+
+input[type="text"] {
+  text-align: center;
+  height: 60px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 200;
+  width:47%;
+}
+input[placeholder="Username"]{
+  margin-left: 3px;
+  width: 28%;
+}
+input[placeholder="Amount"]{
+  margin-right: 5px;
+  width: 15%;
+}
