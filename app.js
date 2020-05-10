@@ -24,9 +24,19 @@ app.use(passport.session());
 
 mongoose.connect('mongodb://localhost:27017/userDB', {useNewUrlParser: true, useUnifiedTopology: true})
 
+const itemsSchema = new mongoose.Schema({
+  username:String,
+  paymentContext:String,
+  amount:Number
+})
+
+const Item = mongoose.model("Item",itemsSchema);
+
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
+  pay:[itemsSchema],
+  recieve:[itemsSchema]
 })
 
 userSchema.plugin(passportLocalMongoose);
@@ -51,8 +61,11 @@ app.get("/Sign-up", function(req, res){
 })
 app.get("/dashboard",function(req,res){
   username = req.user.username;
+
   if(req.isAuthenticated()){
-    res.render("dashboard",{username:username});
+    User.findOne({username:req.user.username},function(err,foundList){
+        res.render("dashboard", {username:username,oldListItems:foundList.pay,newListItems:foundList.recieve})
+      })
   }
   else{
     res.redirect("/Sign-in");
@@ -76,7 +89,6 @@ app.post("/Sign-in",function(req,res){
     }
     else{
       passport.authenticate("local")(req,res, function(){
-        console.log("Hello");
         res.redirect("/dashboard");
       })
     }
@@ -95,6 +107,77 @@ app.post("/Sign-up",function(req,res){
       })
     }
   })
+
+})
+
+app.post("/dashboard",function(req, res){
+
+  const id=req.user._id;
+
+  let tempitem = new Item({
+    username:req.body.username,
+    paymentContext:req.body.paymentContext,
+    amount:req.body.amount
+  })
+
+  tempitem.save();
+  const store = req.body.list;
+  if (store==="pay"){
+    User.findOne({username:req.body.username},function(err,foundList){
+      if(foundList){
+        if(foundList.length != 0){
+          User.findOne({_id:id},function(err, foundLis){
+            tempitem = new Item({
+              username:foundLis.username,
+              paymentContext:req.body.paymentContext,
+              amount:req.body.amount
+            })
+            foundList.recieve.push(tempitem);
+            foundList.save();
+          })
+
+        }
+      }
+      })
+    User.findOne({_id:id},function(err,foundList){
+      if(foundList){
+        if(foundList.length != 0){
+          foundList.pay.push(tempitem);
+          foundList.save();
+        }
+      }
+      res.redirect("/dashboard");
+      })
+  }
+  else {
+    User.findOne({username:req.body.username},function(err,foundList){
+      if(foundList){
+        if(foundList.length != 0){
+          User.findOne({_id:id},function(err,foundLis){
+            tempitem = new Item({
+              username:foundLis.username,
+              paymentContext:req.body.paymentContext,
+              amount:req.body.amount
+            })
+            foundList.pay.push(tempitem);
+            foundList.save();
+          })
+
+        }
+      }
+      })
+
+    User.findOne({_id:id},function(err,foundList){
+      if(foundList){
+        if(foundList.length != 0){
+          foundList.recieve.push(tempitem);
+          foundList.save();
+        }
+      }
+      res.redirect("/dashboard");
+      })
+  }
+
 
 })
 

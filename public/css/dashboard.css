@@ -107,3 +107,32 @@ input[placeholder="Amount"]{
   margin-right: 5px;
   width: 15%;
 }
+p {
+  margin: 0;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #00204a;
+}
+.username{
+  width: 200px;
+}
+.paymentContext{
+  width: 300px;
+}
+.amount{
+  width: 100px;
+}
+.checkbox{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.item-final{
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #F1F1F1;
+  background-color: white;
+  width: 97%;
+  margin-left: 20px;
+}
