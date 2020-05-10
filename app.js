@@ -120,7 +120,6 @@ app.post("/dashboard",function(req, res){
     amount:req.body.amount
   })
 
-  tempitem.save();
   const store = req.body.list;
   if (store==="pay"){
     User.findOne({username:req.body.username},function(err,foundList){
@@ -179,6 +178,63 @@ app.post("/dashboard",function(req, res){
   }
 
 
+})
+
+app.post("/delete",function(req, res){
+  const del1 = req.user.username;
+  console.log(del1);
+  const del2 = req.body.checkbox;
+  const pay ="pay";
+  const recieve = "recieve";
+  const count = req.body.count;
+  const action = req.body.action;
+
+if(req.body.action === recieve){
+  User.findOne({username:del1},function(err,foundUser){
+    if(err){
+      console.log(err);
+    }
+    else{
+      foundUser.recieve.splice(count,1);
+      foundUser.save();
+    }
+  })
+  User.findOne({username:del2},function(err,foundUser){
+    if(err){
+      console.log(err);
+    }
+    else{
+      foundUser.pay.splice(count,1);
+      foundUser.save();
+    }
+  })
+}
+else{
+  User.findOne({username:del1},function(err,foundUser){
+    if(err){
+      console.log(err);
+    }
+    else{
+      foundUser.pay.splice(count,1);
+      foundUser.save();
+    }
+  })
+  User.findOne({username:del2},function(err,foundUser){
+    if(err){
+      console.log(err);
+    }
+    else{
+      foundUser.recieve.splice(count,1);
+      foundUser.save();
+    }
+  })
+}
+
+
+
+
+
+  res.redirect("/dashboard");
 })
 
 

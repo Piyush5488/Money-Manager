@@ -56,14 +56,18 @@
 
 
           <div >
+            <%let count = -1;%>
             <% oldListItems.forEach(function(item){%>
+              <%count++;%>
             <form action="/delete" method="post">
               <div class="item-final">
-                <input class="checkbox" type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()">
+                <input class="checkbox" type="checkbox" name="checkbox" value="<%= item.username %>" onChange="this.form.submit()">
                 <p class="username"> <%= item.username %></p>
                 <p class="paymentContext"> <%= item.paymentContext %></p>
                 <p class="amount"> <%= item.amount %> </p>
               </div>
+              <input type="hidden" name="action" value="pay">
+              <input type="hidden" name="count" value="<%= count %>">
             </form>
             <% })  %>
 
@@ -86,14 +90,18 @@
           </div>
 
           <div >
+            <%let coun = -1;%>
             <% newListItems.forEach(function(item){%>
+              <%coun++;%>
             <form action="/delete" method="post">
               <div class="item-final">
-                <input class="checkbox" type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()">
+                <input class="checkbox" type="checkbox" name="checkbox" value="<%= item.username %>" onChange="this.form.submit()">
                 <p class="username"> <%= item.username %></p>
                 <p class="paymentContext"> <%= item.paymentContext %></p>
                 <p class="amount"> <%= item.amount %> </p>
               </div>
+              <input type="hidden" name="action" value="recieve">
+              <input type="hidden" name="count" value="<%= coun %>">
             </form>
             <% })  %>
 

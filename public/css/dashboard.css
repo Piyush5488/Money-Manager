@@ -34,7 +34,9 @@ body {
  }
 
  /* accountings */
-
+#accountings{
+  margin-bottom: 10%;
+}
 .container{
   background-color: #A683E3;
 }
