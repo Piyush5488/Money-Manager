@@ -1,0 +1,124 @@
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+#navbar{
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav-img{
+  border-radius: 50%;
+}
+
+.navbar-header{
+  margin-left:5px;
+  width:100%;
+}
+.btn-outline-primary{
+  color: #212529;
+}
+.btn0{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (max-width: 576px) {
+  .nav-item{
+    margin-top: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .nav-item{
+    margin-right: 10px;
+  }
+ }
+/* accountings */
+ #split{
+   margin-bottom: 10%;
+   text-align: center;
+ }
+  .box {
+   max-width: 500px;
+   height: 60px;
+   padding: 4px;
+   margin: 60px auto;
+   background: white;
+   border-radius: 5px;
+   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+ }
+ #heading {
+   background-color: white;
+   text-align: center;
+   font-family: 'helvetica neue';
+   color: #0062E6;
+ }
+
+ .item {
+   max-width: 500px;
+   min-height: 70px;
+   margin: 0px auto;
+   display: flex;
+   align-items: center;
+   border-bottom: 1px solid #F1F1F1;
+   background-color: white;
+ }
+
+ form.item {
+   text-align: center;
+   margin-left: 20px;
+ }
+
+ p {
+   margin: 0;
+   padding: 20px;
+   font-size: 20px;
+   font-weight: 200;
+   color: #00204a;
+ }
+
+ input[type="text"] {
+   text-align: center;
+   height: 60px;
+   top: 10px;
+   border: none;
+   background: transparent;
+   font-size: 20px;
+   font-weight: 200;
+   width:47%;
+ }
+
+ .acc-btn {
+   margin-left: 7px;
+   min-height: 50px;
+   width: 50px;
+   border-radius: 50%;
+   border-color: transparent;
+   background-color: #0062E6;
+   color: #fff;
+   font-size: 20px;
+   padding-bottom: 6px;
+   border-width: 0;
+ }
+ .no-pad{
+   margin-bottom: 50px;
+ }
+
+ input[placeholder="Username (Excluding the payer)"]{
+   margin-left: 5px;
+   width: 85%;
+ }
+ input[placeholder="Username of payer"]{
+   margin-left: 5px;
+   width: 50%;
+ }
+ input[placeholder="Amount"]{
+   width: 25%;
+   margin-right: 5px;
+ }
+ input[placeholder="Group size"]{
+   width: 25%;
+ }
+ input[placeholder="Payment Context"]{
+   margin-left: 5px;
+   width: 85%;
+ }

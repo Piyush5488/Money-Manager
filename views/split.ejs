@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Split</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/split.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <section id="navbar">
+
+      <nav class="navbar navbar-expand-lg navbar-light" style=" background: linear-gradient(to right, #035aa6, #0062E6);;">
+        <span class="navbar-brand mb-0 h1" style="color:white;"><%= username %></span>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse topnav-right " id="navbarNav">
+          <!-- ml-auto alligns all elements towards right of the screen -->
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active ">
+              <a role="button" class="btn btn-outline-light" href="/dashboard" style="padding-right:15px; padding-left:15px;">dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a role="button" class="btn btn-outline-light" href="/Log-out">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+
+    <section id = "split">
+
+
+
+            <div id="heading" class="box">
+              <h1>Split payment in group</h1>
+            </div>
+
+
+                <%let count = -1;%>
+                <% listItems.forEach(function(item){%>
+                  <%count++;%>
+
+                  <div class="item">
+                    <p class="username"> <%= item %></p>
+                  </div>
+
+
+                <% })  %>
+
+                <form class="no-pad" action="/Split" method="post">
+                  <div class="item">
+                    <input type="text" name="username"  placeholder="Username (Excluding the payer)">
+                    <button class="acc-btn" type="submit" name="list" value="pay">+</button>
+                  </div>
+
+                </form>
+
+
+            <form  action="/Submit" method="post">
+              <div class="item ">
+                <input type="text" name="username" value="" placeholder="Username of payer">
+                <input type="text" name="size" value="" placeholder="Group size">
+                <input type="text" name="amount"  placeholder="Amount">
+              </div>
+
+              <div class="item">
+                <input type="text" name="paymentContext"  placeholder="Payment Context">
+                <button class="acc-btn" type="submit" name="list" value="pay">&#10003;</button>
+              </div>
+
+
+            </form>
+
+
+
+
+    </section>
+
+
+  </body>
+</html>

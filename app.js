@@ -75,6 +75,10 @@ app.get("/Log-out",function(req, res){
   req.logout();
   res.redirect("/");
 })
+let user_arr = [];
+app.get("/Split", function(req, res){
+  res.render("split",{listItems:user_arr});
+})
 
 app.post("/Sign-in",function(req,res){
 
@@ -182,7 +186,6 @@ app.post("/dashboard",function(req, res){
 
 app.post("/delete",function(req, res){
   const del1 = req.user.username;
-  console.log(del1);
   const del2 = req.body.checkbox;
   const pay ="pay";
   const recieve = "recieve";
@@ -230,15 +233,47 @@ else{
   })
 }
 
-
-
-
-
   res.redirect("/dashboard");
 })
 
+app.post("/Split", function(req, res){
+  const member = req.body.username;
+  user_arr.push(member);
+  res.redirect("/Split")
+})
+
+app.post("/Submit", function(req, res){
+  const username = req.body.username;
+  const size = req.body.size;
+  const paymentContext = req.body.paymentContext;
+  const amount = (req.body.amount)/size;
+
+  user_arr.forEach(function(user){
+    let tempitem = new Item({
+      username:username,
+      paymentContext:paymentContext,
+      amount:amount
+    })
+
+    User.findOne({username:user},function(err, foundUser){
+
+      foundUser.pay.push(tempitem);
+      foundUser.save();
+    })
+    User.findOne({username:username},function(err, foundUser){
+      tempitem = new Item({
+        username:user,
+        paymentContext:paymentContext,
+        amount:amount
+      })
+      foundUser.recieve.push(tempitem);
+      foundUser.save();
+    })
 
 
+  })
+  user_arr.length=0;
+})
 
 
 
