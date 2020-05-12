@@ -19,9 +19,12 @@
   "homepage": "https://github.com/Piyush5488/Money-Manager#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "device": "^0.3.11",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.2.2",
     "mongoose": "^5.9.12",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

@@ -33,6 +33,7 @@ body {
   }
  }
 /* accountings */
+
  #split{
    margin-bottom: 10%;
    text-align: center;
@@ -121,4 +122,100 @@ body {
  input[placeholder="Payment Context"]{
    margin-left: 5px;
    width: 85%;
+ }
+ @media (max-width: 576px){
+   #split{
+     margin-bottom: 10%;
+     text-align: center;
+     padding: 25px;
+   }
+   .box {
+    max-width: 500px;
+    height: 50px;
+    padding-top: 7px;
+    margin: 60px auto;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+  }
+  #split h1{
+    font-size: 1.6rem;
+  }
+  .item {
+    max-width: 500px;
+    min-height: 50px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #F1F1F1;
+    background-color: white;
+  }
+  input[type="text"] {
+    text-align: center;
+    height: 60px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 200;
+    width:47%;
+  }
+  .acc-btn {
+    margin-left: 7px;
+    margin-right: 5px;
+    min-height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border-color: transparent;
+    background-color: #0062E6;
+    color: #fff;
+    font-size: 20px;
+    padding-bottom: 6px;
+    border-width: 0;
+  }
+  #heading {
+    background-color: white;
+    text-align: center;
+    font-family: 'helvetica neue';
+    color: #0062E6;
+  }
+ form.item {
+    text-align: center;
+    margin-left: 20px;
+  }
+
+  p {
+    margin: 0;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 200;
+    color: #00204a;
+  }
+ .no-pad{
+    margin-bottom: 50px;
+  }
+
+  input[placeholder="Username (Excluding the payer)"]{
+    margin-left: 5px;
+    width: 85%;
+  }
+  input[placeholder="Username of payer"]{
+    margin-left: 5px;
+    width: 50%;
+  }
+  input[placeholder="Amount"]{
+    width: 25%;
+    margin-right: 5px;
+  }
+  input[placeholder="Group size"]{
+    width: 25%;
+  }
+  input[placeholder="Payment Context"]{
+    margin-left: 5px;
+    width: 85%;
+  }
+  .head{
+    font-size: 1.6rem;
+  }
+
  }

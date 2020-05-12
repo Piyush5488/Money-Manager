@@ -29,10 +29,10 @@
         <!-- ml-auto alligns all elements towards right of the screen -->
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item active ">
-            <a role="button" class="btn btn-outline-light" href="/Split" style="padding-right:15px; padding-left:15px;">Split</a>
+            <a role="button" class="btn btn-outline-light" href="/Split" style="padding-right:15px; padding-left:15px; ">Split bill</a>
           </li>
           <li class="nav-item">
-            <a role="button" class="btn btn-outline-light" href="/Log-out">Log out</a>
+            <a role="button" class="btn btn-outline-light" href="/Log-out" style="width:88px;">Log out</a>
           </li>
         </ul>
       </div>
@@ -41,15 +41,15 @@
 
 
   <section id="accountings">
-    <div id="heading" class="box">
-      <h1>Keep your dashboard clear</h1>
+    <div id="heading" class="box less-pad">
+      <h1 class="head ">Keep your dashboard clear</h1>
     </div>
 
     <div class="container-fluid" style="padding-left:5%;padding-right:5%">
       <div class="row">
         <div class="col-lg-6">
-          <div class="box acc-box" id="heading">
-            <h1> You need to pay to </h1>
+          <div class="box acc-box item-1" id="heading">
+            <h1 class="head"> You need to pay to </h1>
           </div>
 
 
@@ -59,8 +59,8 @@
             <%let count = -1;%>
             <% oldListItems.forEach(function(item){%>
               <%count++;%>
-            <form action="/delete" method="post">
-              <div class="item-final">
+            <form class="" action="/delete" method="post">
+              <div class="item-final item-1">
                 <input class="checkbox" type="checkbox" name="checkbox" value="<%= item.username %>" onChange="this.form.submit()">
                 <p class="username"> <%= item.username %></p>
                 <p class="paymentContext"> <%= item.paymentContext %></p>
@@ -74,19 +74,25 @@
 
 
 
-            <form class="item" action="/dashboard" method="post">
-              <input type="text" name="username" value="" placeholder="Username">
-              <input type="text" name="paymentContext" placeholder="Payment Context" autocomplete="off">
-              <input type="text" name="amount" value="" placeholder="Amount">
-              <button class="acc-btn" type="submit" name="list" value="pay">+</button>
+            <form class="pad" action="/dashboard" method="post">
+              <div class="item item-1">
+                  <input type="text" name="username" value="" placeholder="Username">
+                  <input type="text" name="amount" value="" placeholder="Amount" autocomplete="off">
+              </div>
+              <div class="item item-1">
+                <input type="text" name="paymentContext" placeholder="Payment Context" autocomplete="off">
+                <button class="acc-btn" type="submit" name="list" value="pay">+</button>
+              </div>
+
+
             </form>
 
           </div>
 
         </div>
         <div class="col-lg-6">
-          <div class="box acc-box" id="heading">
-            <h1> You need to recieve from </h1>
+          <div class="box acc-box item-2" id="heading">
+            <h1 class="head"> You need to recieve from </h1>
           </div>
 
           <div >
@@ -94,7 +100,7 @@
             <% newListItems.forEach(function(item){%>
               <%coun++;%>
             <form action="/delete" method="post">
-              <div class="item-final">
+              <div class="item-final item-2">
                 <input class="checkbox" type="checkbox" name="checkbox" value="<%= item.username %>" onChange="this.form.submit()">
                 <p class="username"> <%= item.username %></p>
                 <p class="paymentContext"> <%= item.paymentContext %></p>
@@ -108,11 +114,16 @@
 
 
 
-            <form class="item" action="/dashboard" method="post">
-              <input type="text" name="username" value="" placeholder="Username">
-              <input type="text" name="paymentContext" placeholder="Payment Context" autocomplete="off">
-              <input type="text" name="amount" value="" placeholder="Amount">
-              <button class="acc-btn" type="submit" name="list" value="recieve">+</button>
+            <form class="pad" action="/dashboard" method="post">
+              <div class="item item-2">
+                  <input type="text" name="username" value="" placeholder="Username">
+                  <input type="text" name="amount" value="" placeholder="Amount" autocomplete="off">
+              </div>
+              <div class="item item-2">
+                <input type="text" name="paymentContext" placeholder="Payment Context" autocomplete="off">
+                <button class="acc-btn" type="submit" name="list" value="recieve">+</button>
+              </div>
+
             </form>
 
           </div>

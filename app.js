@@ -6,6 +6,10 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const $ = require( "jquery" )( window );
+
 const app =express();
 
 app.set('view engine', 'ejs');
@@ -64,7 +68,9 @@ app.get("/dashboard",function(req,res){
 
   if(req.isAuthenticated()){
     User.findOne({username:req.user.username},function(err,foundList){
-        res.render("dashboard", {username:username,oldListItems:foundList.pay,newListItems:foundList.recieve})
+
+      res.render("dashboard", {username:username,oldListItems:foundList.pay,newListItems:foundList.recieve});
+
       })
   }
   else{
@@ -80,23 +86,34 @@ app.get("/Split", function(req, res){
   res.render("split",{listItems:user_arr});
 })
 
-app.post("/Sign-in",function(req,res){
+app.post("/Sign-in",function(req,res,next){
 
   const user = new User({
     username:req.body.username,
     password: req.body.password
   })
 
-  req.login(user,function(err){
-    if(err){
-      console.log(err);
-    }
-    else{
-      passport.authenticate("local")(req,res, function(){
-        res.redirect("/dashboard");
-      })
-    }
-  })
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/Sign-in'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect("/dashboard");
+    });
+  })(req, res, next);
+
+  // req.login(user,function(err){
+  //
+  //   if(err){
+  //     console.log(err);
+  //   }
+  //   else{
+  //     console.log("Hello");
+  //     passport.authenticate("local")(req,res, function(){
+  //       res.redirect("/dashboard");
+  //     })
+  //   }
+  // })
 
 })
 app.post("/Sign-up",function(req,res){
@@ -115,7 +132,7 @@ app.post("/Sign-up",function(req,res){
 })
 
 app.post("/dashboard",function(req, res){
-
+  let flag = 1;
   const id=req.user._id;
 
   let tempitem = new Item({
@@ -128,6 +145,7 @@ app.post("/dashboard",function(req, res){
   if (store==="pay"){
     User.findOne({username:req.body.username},function(err,foundList){
       if(foundList){
+        console.log("first");
         if(foundList.length != 0){
           User.findOne({_id:id},function(err, foundLis){
             tempitem = new Item({
@@ -141,19 +159,27 @@ app.post("/dashboard",function(req, res){
 
         }
       }
-      })
-    User.findOne({_id:id},function(err,foundList){
-      if(foundList){
-        if(foundList.length != 0){
-          foundList.pay.push(tempitem);
-          foundList.save();
-        }
+      else{
+        flag = 0;
       }
-      res.redirect("/dashboard");
       })
+
+
+        User.findOne({username:req.user.username},function(err,foundList){
+          if(foundList){
+            if(foundList.length != 0){
+              foundList.pay.push(tempitem);
+              foundList.save();
+            }
+          }
+          res.redirect("/dashboard");
+          })
+
+
   }
   else {
     User.findOne({username:req.body.username},function(err,foundList){
+
       if(foundList){
         if(foundList.length != 0){
           User.findOne({_id:id},function(err,foundLis){
@@ -167,6 +193,9 @@ app.post("/dashboard",function(req, res){
           })
 
         }
+      }
+      else{
+        flag=0;
       }
       })
 
@@ -203,13 +232,16 @@ if(req.body.action === recieve){
     }
   })
   User.findOne({username:del2},function(err,foundUser){
-    if(err){
-      console.log(err);
+    if (foundUser){
+      if(err){
+        console.log(err);
+      }
+      else{
+        foundUser.pay.splice(count,1);
+        foundUser.save();
+      }
     }
-    else{
-      foundUser.pay.splice(count,1);
-      foundUser.save();
-    }
+
   })
 }
 else{
@@ -223,13 +255,16 @@ else{
     }
   })
   User.findOne({username:del2},function(err,foundUser){
-    if(err){
-      console.log(err);
+    if(foundUser){
+      if(err){
+        console.log(err);
+      }
+      else{
+        foundUser.recieve.splice(count,1);
+        foundUser.save();
+      }
     }
-    else{
-      foundUser.recieve.splice(count,1);
-      foundUser.save();
-    }
+
   })
 }
 
@@ -246,7 +281,7 @@ app.post("/Submit", function(req, res){
   const username = req.body.username;
   const size = req.body.size;
   const paymentContext = req.body.paymentContext;
-  const amount = (req.body.amount)/size;
+  const amount = Math.floor((req.body.amount)/size);
 
   user_arr.forEach(function(user){
     let tempitem = new Item({
@@ -256,23 +291,30 @@ app.post("/Submit", function(req, res){
     })
 
     User.findOne({username:user},function(err, foundUser){
+      if (foundUser){
+        foundUser.pay.push(tempitem);
+        foundUser.save();
+      }
 
-      foundUser.pay.push(tempitem);
-      foundUser.save();
+
     })
     User.findOne({username:username},function(err, foundUser){
-      tempitem = new Item({
-        username:user,
-        paymentContext:paymentContext,
-        amount:amount
-      })
-      foundUser.recieve.push(tempitem);
-      foundUser.save();
+      if(foundUser){
+        tempitem = new Item({
+          username:user,
+          paymentContext:paymentContext,
+          amount:amount
+        })
+        foundUser.recieve.push(tempitem);
+        foundUser.save();
+      }
+
     })
 
 
   })
   user_arr.length=0;
+  res.redirect("dashboard");
 })
 
 
